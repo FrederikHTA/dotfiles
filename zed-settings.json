@@ -1,0 +1,85 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+    {
+        "context": "Workspace",
+        "bindings": {
+            // "space f f": "file_finder::Toggle"
+        }
+    },
+    {
+        "context": "Editor",
+        "bindings": {
+            // "j k": ["workspace::SendKeystrokes", "escape"]
+        }
+    },
+    {
+        "context": "vim_operator == a || vim_operator == i || vim_operator == cs",
+        "bindings": {
+            "q": "vim::MiniQuotes"
+            // "b": "vim::MiniBrackets",
+            // "b": "vim::Parentheses",
+            // mini.ai plugin behavior
+            // "B": "vim::CurlyBrackets"
+        }
+    },
+    {
+        "context": "vim_mode == normal && !menu",
+        "bindings": {
+            // Put key bindings here if you want them to work in normal mode.
+            // "g d": ["workspace::SendKeystrokes", "editor::GoToDefinition z z"],
+            "space f f": "file_finder::Toggle",
+            "space f w": "pane::DeploySearch",
+            "space s s": "tab_switcher::ToggleAll",
+            "space n": "pane::RevealInProjectPanel",
+            "space s t": "terminal_panel::Toggle",
+            "g u": "editor::FindAllReferences",
+            "space s o": "projects::OpenRecent",
+            "space c l": "editor::GoToDiagnostic",
+            "space c h": "editor::GoToPreviousDiagnostic",
+
+            // Git
+            "space g b": "git::Switch",
+            "space g f": "git::Fetch",
+            "space g k": "git::Push",
+            "space g p": "git::Pull",
+            "space g c": "git_panel::ToggleFocus",
+
+            // Random Quality-of-life improvements
+            "backspace": ["workspace::SendKeystrokes", "c i w"],
+            "ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"],
+            "ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
+            "ctrl-y": ["workspace::SendKeystrokes", "ctrl-d z z"],
+            "n": ["workspace::SendKeystrokes", "n z z"],
+            "N": ["workspace::SendKeystrokes", "N z z"],
+            "space q": ["workspace::SendKeystrokes", ": q enter"]
+        }
+    },
+    {
+        "context": "vim_mode == insert",
+        "bindings": {
+            // "j k": "vim::NormalBefore" // In insert mode, make jk escape to normal mode.
+        }
+    },
+    {
+        "context": "vim_mode == visual",
+        "bindings": {
+            "<": ["workspace::SendKeystrokes", "< g v"],
+            ">": ["workspace::SendKeystrokes", "> g v"]
+        }
+    },
+    {
+        "context": "EmptyPane || SharedScreen",
+        "bindings": {
+            // Put key bindings here (in addition to the context above) if you want them to
+            // work when no editor exists.
+            "space f f": "file_finder::Toggle",
+            "space n": "workspace::ToggleLeftDock"
+        }
+    }
+]
