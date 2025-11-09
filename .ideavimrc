@@ -1,0 +1,163 @@
+" .ideavimrc is a configuration file for IdeaVim plugin. It uses
+"   the same commands as the original .vimrc configuration.
+" You can find a list of commands here: https://jb.gg/h38q75
+" Find more examples here: https://jb.gg/share-ideavimrc
+
+let mapleader = " "
+nnoremap <Space> <Nop>
+
+" basic vim settings
+set scrolloff=8
+set number relativenumber
+set idearefactormode=keep
+set ideajoin
+set incsearch
+set clipboard+=unnamed
+set showmode
+set showcmd
+set ignorecase
+set smartcase
+set hlsearch
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+
+" Add Plugins
+set highlightedyank
+set commentary
+set surround
+set NERDTree
+set which-key
+set notimeout
+set easymotion
+set peekaboo
+
+"disable shitter windows sounds
+set belloff=all
+set noerrorbells
+set vb t_vb=
+
+" --- Custom key mappings ---
+nmap gd <Action>(GotoDeclaration)
+nmap gi <Action>(GotoImplementation)
+nmap gt <Action>(GotoTypeDeclaration)
+nmap gu <Action>(ShowUsages)
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap <C-u> <C-u>zzzv
+nnoremap <C-d> <C-d>zzzv
+nnoremap <C-f> <C-f>zzzv
+nnoremap <C-b> <C-b>zzzv
+nnoremap <C-y> :noh<CR><C-L>
+nmap [ <Action>(MethodUp)
+nmap ] <Action>(MethodDown)
+vmap < <gv
+vmap > >gv
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+nnoremap J mzJ`z
+nnoremap <leader>rp va(:s/(/(\r/g<CR>vi(:s/, /,\r/g<CR>:noh<CR>
+nnoremap <BS> ciw
+map <leader>ca <action>(HideActiveWindow)
+map s <Plug>(easymotion-bd-f)
+nmap Y y$
+
+" Leader mappings
+nmap <leader>y "+y
+nmap <leader>p "+p
+nmap <leader>d "+d
+vmap <leader>v "_dP
+
+" Open vimrc file
+let g:WhichKeyDesc_open_init_vim = '<leader>fp Open vimrc file' 
+map <Leader>vo :e ~/./.ideavimrc<CR>
+map <leader>vrr <action>(IdeaVim.ReloadVimRc.reload)
+
+" Git
+let g:WhichKeyDesc_git = "<Space>g Git"
+map <leader>gs <action>(Git.Menu)
+map <leader>gf <Action>(Git.Fetch)
+map <leader>gp <Action>(Git.Pull)
+map <leader>gb <Action>(Git.Branches)
+map <leader>gn <Action>(GitNewBranchAction)
+map <leader>gk <Action>(Vcs.Push)
+map <leader>gc <Action>(CheckinProject)
+map <leader>gC <Action>(copilot.chat.show)
+
+
+" Code Actions
+let g:WhichKeyDesc_code_actions = "<Space>c Code Actions"
+map <leader>cp <Action>(ParameterInfo)
+map <leader>ci <Action>(QuickJavaDoc)
+map <leader>cr <Action>(ReformatCode)
+map <leader>ce <Action>(ShowErrorDescription)
+"map <leader>cl <Action>(ReSharperGotoNextErrorInSolution)
+"map <leader>ch <Action>(ReSharperGotoPrevErrorInSolution)
+map <leader>cl <Action>(GotoNextError)
+map <leader>ch <Action>(GotoPreviousError)
+
+map <leader>b <Action>(ToggleLineBreakpoint)
+
+" Refactoring
+let g:WhichKeyDesc_refactoring = "<Space>r Refactoring"
+map <leader>rr <Action>(RenameElement)
+map <leader>rm <Action>(ExtractMethod)
+map <leader>rv <Action>(IntroduceVariable)
+map <leader>rf <Action>(IntroduceField)
+map <leader>rs <Action>(ChangeSignature)
+
+" Navigation
+let g:WhichKeyDesc_navigation = "<Space>n Navigation"
+map <S-l> <Action>(NextTab)
+map <S-h> <Action>(PreviousTab)
+map <leader>q <Action>(CloseContent)
+map <leader>sf <Action>(SearchEverywhere)
+map <leader>sg <Action>(FindInPath)
+map <leader>wr <Action>(SaveAll)
+map <leader>kk <Action>(ToggleBookmark)
+map <leader>kn <Action>(GotoNextBookmark)
+"nmap <C-o> <Action>(Back)
+"nmap <C-i> <Action>(Forward)
+
+" Intellij tool windows
+let g:WhichKeyDesc_tools = "<Space>s Intellij tool windows"
+map <leader>sb <Action>(ActivateBuildToolWindow)
+map <leader>ss <Action>(Switcher)
+map <leader>st <Action>(ActivateTerminalToolWindow)
+map <leader>sS <Action>(BuildWholeSolutionAction)
+map <leader>sn <Action>(ActivateNuGetToolWindow)
+map <leader>sB <Action>(BuildCurrentProject)
+map <leader>sr <Action>(ActivateRunToolWindow)
+map <leader>sd <Action>(ActivateDebugToolWindow)
+map <leader>so <Action>(RiderFileOpenGroup)
+
+" NERDTree (use q to exit)
+let g:WhichKeyDesc_nerdtree = "<Space>n NERDTree"
+map <leader>nt :NERDTreeToggle<CR>
+map <leader>no :NERDTreeFocus<CR>
+map <leader>nc :NERDTreeClose<CR>
+map <leader>nf :NERDTreeFind<CR>
+map <leader>ns <Action>(ActivateStructureToolWindow)
+
+
+" Window Splits
+let g:WhichKeyDesc_windows = "<Space>w Windows"
+map <leader>wv <Action>(SplitVertically)
+map <leader>ws <Action>(SplitHorizontally)
+map <leader>wu <Action>(Unsplit)
+map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
+map <leader>wt <Action>(EditSourceInNewWindow)
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
+
+" Testing
+let g:WhichKeyDesc_testing = "<Space>t Intellij Testing"
+map <leader>tl <Action>(RiderUnitTestRepeatPreviousRunAction)
+map <leader>ta <Action>(RiderUnitTestRunSolutionAction)
+map <leader>tr <Action>(RiderUnitTestRunContextAction)
+map <leader>td <Action>(RiderUnitTestDebugContextAction)
+map <leader>tc <Action>(RiderUnitTestCoverTreeTwAction)
+map <leader>ts <Action>(ActivateUnitTestsToolWindow)
+map <leader>tf <Action>(RiderUnitTestSessionRerunFailedTestsAction)
