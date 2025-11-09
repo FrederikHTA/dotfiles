@@ -1,212 +1,85 @@
-// Zed settings
+// Zed keymap
 //
-// For information on how to configure Zed, see the Zed
-// documentation: https://zed.dev/docs/configuring-zed
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
 //
-// To see all of Zed's default settings without changing your
-// custom settings, run `zed: open default settings` from the
-// command palette (cmd-shift-p / ctrl-shift-p)
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+    {
+        "context": "Workspace",
+        "bindings": {
+            // "space f f": "file_finder::Toggle"
+        }
+    },
+    {
+        "context": "Editor",
+        "bindings": {
+            // "j k": ["workspace::SendKeystrokes", "escape"]
+        }
+    },
+    {
+        "context": "vim_operator == a || vim_operator == i || vim_operator == cs",
+        "bindings": {
+            "q": "vim::MiniQuotes"
+            // "b": "vim::MiniBrackets",
+            // "b": "vim::Parentheses",
+            // mini.ai plugin behavior
+            // "B": "vim::CurlyBrackets"
+        }
+    },
+    {
+        "context": "vim_mode == normal && !menu",
+        "bindings": {
+            // Put key bindings here if you want them to work in normal mode.
+            // "g d": ["workspace::SendKeystrokes", "editor::GoToDefinition z z"],
+            "space f f": "file_finder::Toggle",
+            "space f w": "pane::DeploySearch",
+            "space s s": "tab_switcher::ToggleAll",
+            "space n": "pane::RevealInProjectPanel",
+            "space s t": "terminal_panel::Toggle",
+            "g u": "editor::FindAllReferences",
+            "space s o": "projects::OpenRecent",
+            "space c l": "editor::GoToDiagnostic",
+            "space c h": "editor::GoToPreviousDiagnostic",
 
-{
-    "base_keymap": "JetBrains",
-    "features": {
-        "edit_prediction_provider": "zed"
-    },
-    "vim_mode": true,
-    "cursor_blink": false,
-    "vim": {
-        "default_mode": "normal",
-        "use_system_clipboard": "always",
-        "use_smartcase_find": true,
-        "toggle_relative_line_numbers": true,
-        "highlight_on_yank_duration": 200,
-        "custom_digraphs": {
-            "fz": "🧟‍♀️" // ???
-        }
-    },
-    "ui_font_size": 20,
-    "buffer_font_size": 26,
-    "buffer_font_weight": 500,
-    "debugger": {
-        "dock": "bottom"
-    },
-    "agent": {
-        "default_model": {
-            "provider": "copilot_chat",
-            "model": "gpt-5"
-        },
-        "dock": "right"
-    },
-    "edit_predictions": {
-        "mode": "eager",
-        // "copilot": {
-        //   "proxy": null,
-        //   "proxy_no_verify": null,
-        //   "enterprise_uri": null
-        // },
-        "enabled_in_text_threads": false
-    },
-    "icon_theme": "Material Icon Theme",
-    "theme": "Ayu Mirage",
-    "buffer_font_family": "JetBrainsMono Nerd Font",
-    // "wrap_guides": [100],
-    "soft_wrap": "editor_width",
-    "diagnostics_max_severity": "hint",
-    // bottom bar
-    "status_bar": {
-        "active_language_button": true, //
-        "cursor_position_button": true //
-    },
-    // Tabs
-    "tab_bar": {
-        "show": false,
-        "show_nav_history_buttons": false,
-        "show_tab_bar_buttons": false
-    },
-    "tab_size": 4,
-    "tabs": {
-        "close_position": "right",
-        "file_icons": true,
-        "git_status": true,
-        "activate_on_close": "neighbour",
-        "show_close_button": "hover",
-        "show_diagnostics": "all"
-    },
-    // Title Bar (top bar do Zed)
-    "title_bar": {
-        "show_branch_icon": true,
-        "show_branch_name": true,
-        "show_project_items": true,
-        "show_onboarding_banner": false,
-        "show_user_picture": false,
-        "show_sign_in": true,
-        "show_menus": true
-    },
-    // Toolbar (equivalente Command Palette fixo)
-    "toolbar": {
-        "breadcrumbs": true,
-        "quick_actions": true,
-        "selections_menu": true,
-        "agent_review": true
-    },
-    // Minimap
-    "minimap": {
-        "show": "never",
-        "thumb": "always",
-        "thumb_border": "left_open",
-        "current_line_highlight": null
-    },
-    // Git
-    "git": {
-        "git_gutter": "tracked_files",
-        "inline_blame": {
-            "enabled": true,
-            "show_commit_summary": true,
-            "padding": 7
-        },
-        "branch_picker": {
-            "show_author_name": true
-        },
-        "hunk_style": "unstaged_hollow"
-    },
-    // Editor (cursor, indentação, whitespaces)
-    "show_whitespaces": "none",
-    "indent_guides": {
-        "enabled": true,
-        "line_width": 1,
-        "active_line_width": 0,
-        "coloring": "indent_aware",
-        "background_coloring": "disabled"
-    },
-    // Explorer / Project Panel
-    "project_panel": {
-        "button": true,
-        "default_width": 240,
-        "folder_icons": false,
-        // "hide_root": true,
-        "indent_size": 20,
-        "auto_fold_dirs": false,
-        "drag_and_drop": true,
-        "git_status": true,
-        "auto_reveal_entries": true,
-        "entry_spacing": "comfortable",
-        "starts_open": true,
-        "scrollbar": {
-            "show": null
-        },
+            // Git
+            "space g b": "git::Switch",
+            "space g f": "git::Fetch",
+            "space g k": "git::Push",
+            "space g p": "git::Pull",
+            "space g c": "git_panel::ToggleFocus",
 
-        "indent_guides": {
-            "show": "always"
+            // Random Quality-of-life improvements
+            "backspace": ["workspace::SendKeystrokes", "c i w"],
+            "ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"],
+            "ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
+            "ctrl-y": ["workspace::SendKeystrokes", "ctrl-d z z"],
+            "n": ["workspace::SendKeystrokes", "n z z"],
+            "N": ["workspace::SendKeystrokes", "N z z"],
+            "space q": ["workspace::SendKeystrokes", ": q enter"]
         }
     },
-    "collaboration_panel": {
-        "button": false
-    },
-    "outline_panel": {
-        "button": false,
-        "default_width": 300,
-        "file_icons": true,
-        "folder_icons": true,
-        "git_status": true,
-        "indent_size": 20,
-        "auto_reveal_entries": true,
-        "auto_fold_dirs": true,
-        "indent_guides": {
-            "show": "always"
-        },
-        "scrollbar": {
-            "show": null
+    {
+        "context": "vim_mode == insert",
+        "bindings": {
+            // "j k": "vim::NormalBefore" // In insert mode, make jk escape to normal mode.
         }
     },
-    "terminal": {
-        "alternate_scroll": "off",
-        "blinking": "on",
-        "copy_on_select": false,
-        "keep_selection_on_copy": false,
-        "dock": "bottom",
-        "default_width": 640,
-        "default_height": 320,
-        "env": {
-            "FIG_NEW_SESSION": "1",
-            "Q_NEW_SESSION": "1"
-        },
-
-        "detect_venv": {
-            "on": {
-                "directories": [".env", "env", ".venv", "venv"],
-                "activate_script": "default"
-            }
-        },
-        "font_size": 20,
-        "line_height": "comfortable",
-        "minimum_contrast": 45,
-        "button": true,
-        "shell": "system",
-        "toolbar": {
-            "breadcrumbs": false
-        },
-        "working_directory": "current_project_directory",
-        "scrollbar": {
-            "show": null
+    {
+        "context": "vim_mode == visual",
+        "bindings": {
+            "<": ["workspace::SendKeystrokes", "< g v"],
+            ">": ["workspace::SendKeystrokes", "> g v"]
         }
     },
-    // "cursor_shape": "underline",
-    "scrollbar": {
-        "show": "never",
-        "cursors": true
-    },
-    "file_types": {
-        "css": ["*.css"],
-        "json": [".prettierrc"],
-        "dotenv": [".env.*"]
-    },
-    "languages": {
-        "FSharp": {
-            "tab_size": 4,
-            "format_on_save": "on",
-            "enable_language_server": true,
-            "show_completions_on_input": true,
-            "show_completion_documentation": true
+    {
+        "context": "EmptyPane || SharedScreen",
+        "bindings": {
+            // Put key bindings here (in addition to the context above) if you want them to
+            // work when no editor exists.
+            "space f f": "file_finder::Toggle",
+            "space n": "workspace::ToggleLeftDock"
         }
     }
-}
+]
