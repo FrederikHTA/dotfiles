@@ -29,7 +29,7 @@ set surround
 set NERDTree
 set which-key
 set notimeout
-set easymotion
+"set easymotion
 set peekaboo
 
 "disable shitter windows sounds
@@ -59,7 +59,9 @@ nnoremap J mzJ`z
 nnoremap <leader>rp va(:s/(/(\r/g<CR>vi(:s/, /,\r/g<CR>:noh<CR>
 nnoremap <BS> ciw
 map <leader>ca <action>(HideActiveWindow)
-map s <Plug>(easymotion-bd-f)
+"map s <Plug>(easymotion-bd-f)
+nmap s <Action>(flash.search)
+xmap s <Action>(flash.search)
 nmap Y y$
 
 " Leader mappings
@@ -71,23 +73,25 @@ vmap <leader>v "_dP
 " Open vimrc file
 let g:WhichKeyDesc_open_init_vim = '<leader>fp Open vimrc file' 
 map <Leader>vo :e ~/./.ideavimrc<CR>
-map <leader>vrr <action>(IdeaVim.ReloadVimRc.reload)
+map <leader>vrr <Action>(IdeaVim.ReloadVimRc.reload)
 
 " Git
 let g:WhichKeyDesc_git = "<Space>g Git"
-map <leader>gs <action>(Git.Menu)
+map <leader>gs <Action>(Git.Menu)
 map <leader>gf <Action>(Git.Fetch)
 map <leader>gp <Action>(Git.Pull)
 map <leader>gb <Action>(Git.Branches)
-map <leader>gn <Action>(GitNewBranchAction)
+map <leader>gn <Action>(Git.CreateNewBranch)
 map <leader>gk <Action>(Vcs.Push)
 map <leader>gc <Action>(CheckinProject)
 map <leader>gC <Action>(copilot.chat.show)
 
-
 " Code Actions
 let g:WhichKeyDesc_code_actions = "<Space>c Code Actions"
 map <leader>cp <Action>(ParameterInfo)
+nmap <C-s> <Action>(ParameterInfo)
+imap <C-s> <Action>(ParameterInfo)
+imap <C-a> <Action>(CodeCompletion)
 map <leader>ci <Action>(QuickJavaDoc)
 map <leader>cr <Action>(ReformatCode)
 map <leader>ce <Action>(ShowErrorDescription)
@@ -107,38 +111,41 @@ map <leader>rf <Action>(IntroduceField)
 map <leader>rs <Action>(ChangeSignature)
 
 " Navigation
-let g:WhichKeyDesc_navigation = "<Space>n Navigation"
+let g:WhichKeyDesc_navigation = "Misc"
 map <S-l> <Action>(NextTab)
 map <S-h> <Action>(PreviousTab)
 map <leader>q <Action>(CloseContent)
-map <leader>sf <Action>(SearchEverywhere)
-map <leader>sg <Action>(FindInPath)
 map <leader>wr <Action>(SaveAll)
 map <leader>kk <Action>(ToggleBookmark)
 map <leader>kn <Action>(GotoNextBookmark)
 "nmap <C-o> <Action>(Back)
 "nmap <C-i> <Action>(Forward)
 
+" Find Files
+map <leader>ff <Action>(SearchEverywhere)
+map <leader>fw <Action>(FindInPath)
+
 " Intellij tool windows
 let g:WhichKeyDesc_tools = "<Space>s Intellij tool windows"
 map <leader>sb <Action>(ActivateBuildToolWindow)
-map <leader>ss <Action>(Switcher)
 map <leader>st <Action>(ActivateTerminalToolWindow)
-map <leader>sS <Action>(BuildWholeSolutionAction)
+map <leader>ss <Action>(Switcher)
 map <leader>sn <Action>(ActivateNuGetToolWindow)
+map <leader>sS <Action>(BuildWholeSolutionAction)
 map <leader>sB <Action>(BuildCurrentProject)
+map <leader>sC <Action>(CleanSolutionAction)
 map <leader>sr <Action>(ActivateRunToolWindow)
 map <leader>sd <Action>(ActivateDebugToolWindow)
 map <leader>so <Action>(RiderFileOpenGroup)
+map <leader>si <Action>(Rider.Plugins.FSharp.SendToFsi)
 
 " NERDTree (use q to exit)
 let g:WhichKeyDesc_nerdtree = "<Space>n NERDTree"
-map <leader>nt :NERDTreeToggle<CR>
-map <leader>no :NERDTreeFocus<CR>
-map <leader>nc :NERDTreeClose<CR>
-map <leader>nf :NERDTreeFind<CR>
-map <leader>ns <Action>(ActivateStructureToolWindow)
-
+" map <leader>nt :NERDTreeToggle<CR>
+" map <leader>no :NERDTreeFocus<CR>
+" map <leader>nc :NERDTreeClose<CR>
+map <leader>n :NERDTreeFind<CR>
+" map <leader>ns <Action>(ActivateStructureToolWindow)
 
 " Window Splits
 let g:WhichKeyDesc_windows = "<Space>w Windows"
