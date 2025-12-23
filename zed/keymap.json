@@ -65,6 +65,7 @@
             "g u": "editor::FindAllReferences",
             "space c l": "editor::GoToDiagnostic",
             "space c h": "editor::GoToPreviousDiagnostic",
+            "space q": "pane::CloseActiveItem",
 
             // Git
             "space g b": "git::Switch",
