@@ -27,5 +27,8 @@
     "project_panel": {
         "dock": "right",
     },
+    "git_panel": {
+        "dock": "right",
+    },
     "tab_size": 4,
 }

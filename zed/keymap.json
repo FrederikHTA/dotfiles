@@ -10,12 +10,20 @@
     {
         "context": "Workspace",
         "bindings": {
-            "space q": "pane::CloseActiveItem",
             "space f f": "file_finder::Toggle",
             "space f w": "pane::DeploySearch",
             "space s s": "tab_switcher::ToggleAll",
             "space s t": "terminal_panel::Toggle",
             "space s o": "projects::OpenRecent",
+        },
+    },
+
+    // GitPanel
+    {
+        "context": "GitPanel",
+        "bindings": {
+            "space q": "workspace::CloseActiveDock",
+            // ... or other keybindings
         },
     },
 
