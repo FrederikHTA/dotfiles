@@ -1,121 +1,34 @@
-// Zed keymap
+// Zed settings
 //
-// For information on binding keys, see the Zed
-// documentation: https://zed.dev/docs/key-bindings
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
 //
-// To see the default key bindings run `zed: open default keymap`
-// from the command palette.
-[
-    // Workspace
-    {
-        "context": "Workspace",
-        "bindings": {
-            "space f f": "file_finder::Toggle",
-            "space f w": "pane::DeploySearch",
-            "space s s": "tab_switcher::ToggleAll",
-            "space s t": "terminal_panel::Toggle",
-            "space s o": "projects::OpenRecent",
-        },
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+    "ui_font_size": 20,
+    "buffer_font_size": 24,
+    "buffer_font_weight": 500,
+    "theme": {
+        "mode": "system",
+        "light": "Gruvbox Light",
+        "dark": "Kanagawa",
     },
-
-    // GitPanel
-    {
-        "context": "GitPanel",
-        "bindings": {
-            "space q": "workspace::CloseActiveDock",
-            // ... or other keybindings
-        },
+    "vim_mode": true,
+    "relative_line_numbers": "enabled",
+    "vertical_scroll_margin": 8,
+    "cursor_blink": false,
+    "tab_bar": {
+        "show": true,
+        "show_nav_history_buttons": false,
+        "show_tab_bar_buttons": false,
     },
-
-    // Dock
-    {
-        "context": "Dock",
-        "bindings": {
-            "ctrl-w h": "workspace::ActivatePaneLeft",
-            "ctrl-w l": "workspace::ActivatePaneRight",
-            "ctrl-w k": "workspace::ActivatePaneUp",
-            "ctrl-w j": "workspace::ActivatePaneDown",
-            // ... or other keybindings
-        },
+    "project_panel": {
+        "dock": "right",
     },
-
-    // vim_operator == a || vim_operator == i || vim_operator == cs
-    {
-        "context": "vim_operator == a || vim_operator == i || vim_operator == cs",
-        "bindings": {
-            "q": "vim::MiniQuotes",
-            "b": "vim::Parentheses",
-            "B": "vim::CurlyBrackets",
-        },
+    "git_panel": {
+        "dock": "right",
     },
-
-    // VimControl && !menu
-    {
-        "context": "VimControl && !menu",
-        "bindings": {
-            // Put key bindings here if you want them to work in normal & visual mode.
-            "space n": "pane::RevealInProjectPanel",
-        },
-    },
-
-    // vim_mode == normal && !menu
-    {
-        "context": "vim_mode == normal && !menu",
-        "bindings": {
-            "g u": "editor::FindAllReferences",
-            "space c l": "editor::GoToDiagnostic",
-            "space c h": "editor::GoToPreviousDiagnostic",
-            "space q": "pane::CloseActiveItem",
-
-            // Git
-            "space g b": "git::Switch",
-            "space g f": "git::Fetch",
-            "space g k": "git::Push",
-            "space g p": "git::Pull",
-            "space g c": "git_panel::ToggleFocus",
-
-            // Random Quality-of-life improvements
-            "shift-y": ["workspace::SendKeystrokes", "y $"], // Use neovim's yank behavior: yank to end of line.
-            "backspace": ["workspace::SendKeystrokes", "c i w"],
-            "ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"],
-            "ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
-            "n": ["workspace::SendKeystrokes", "n z z"],
-            "N": ["workspace::SendKeystrokes", "N z z"],
-        },
-    },
-
-    // vim_mode == insert
-    {
-        "context": "vim_mode == insert",
-        "bindings": {
-            // "j k": "vim::NormalBefore" // In insert mode, make jk escape to normal mode.
-        },
-    },
-
-    // vim_mode == visual
-    {
-        "context": "vim_mode == visual",
-        "bindings": {
-            "<": ["workspace::SendKeystrokes", "< g v"],
-            ">": ["workspace::SendKeystrokes", "> g v"],
-        },
-    },
-
-    // EmptyPane || SharedScreen
-    {
-        "context": "EmptyPane || SharedScreen",
-        "bindings": {
-            // Put key bindings here (in addition to the context above) if you want them to
-            // work when no editor exists.
-            "space f f": "file_finder::Toggle",
-        },
-    },
-
-    // ProjectPanel
-    {
-        "context": "ProjectPanel",
-        "bindings": {
-            "q": "workspace::CloseActiveDock",
-        },
-    },
-]
+    "tab_size": 4,
+}
