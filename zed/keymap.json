@@ -6,12 +6,19 @@
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
 [
-    // Context
+    // Contexts
     // https://github.com/zed-industries/zed/issues/14718
+
+    {
+        "bindings": {
+            // disable zoom
+            "shift-escape": null,
+        },
+    },
 
     // Workspace
     {
-        "context": "Workspace",
+        "context": "Editor && vim_mode != insert",
         "bindings": {
             "space f f": "file_finder::Toggle",
             "space f w": "pane::DeploySearch",
@@ -23,9 +30,10 @@
 
     // GitPanel
     {
-        "context": "GitPanel",
+        "context": "GitPanel || CommitEditor || GitCommit || Editor",
         "bindings": {
-            "space q": "workspace::CloseActiveDock",
+            "ctrl-w": "workspace::CloseActiveDock",
+            "shift-escape": "workspace::CloseActiveDock",
             // ... or other keybindings
         },
     },
@@ -38,6 +46,7 @@
             "ctrl-w l": "workspace::ActivatePaneRight",
             "ctrl-w k": "workspace::ActivatePaneUp",
             "ctrl-w j": "workspace::ActivatePaneDown",
+            "ctrl-w": "workspace::CloseActiveDock",
             // ... or other keybindings
         },
     },
@@ -69,6 +78,9 @@
             "space c l": "editor::GoToDiagnostic",
             "space c h": "editor::GoToPreviousDiagnostic",
             "space q": "pane::CloseActiveItem",
+
+            // Agent
+            "space g C": "agent::ToggleFocus",
 
             // Git
             "space g b": "git::Switch",
@@ -111,6 +123,7 @@
             // Put key bindings here (in addition to the context above) if you want them to
             // work when no editor exists.
             "space f f": "file_finder::Toggle",
+            "space space": "file_finder::Toggle",
         },
     },
 
@@ -118,7 +131,17 @@
     {
         "context": "ProjectPanel",
         "bindings": {
-            "q": "workspace::CloseActiveDock",
+            "ctrl-w": "workspace::CloseActiveDock",
+            "shift-escape": "workspace::CloseActiveDock",
+        },
+    },
+
+    // Terminal
+    {
+        "context": "Terminal",
+        "bindings": {
+            "ctrl-w": "workspace::CloseActiveDock",
+            "shift-escape": "workspace::CloseActiveDock",
         },
     },
 ]
