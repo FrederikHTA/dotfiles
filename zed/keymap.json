@@ -28,16 +28,6 @@
         },
     },
 
-    // GitPanel
-    {
-        "context": "GitPanel || CommitEditor || GitCommit || Editor",
-        "bindings": {
-            "ctrl-w": "workspace::CloseActiveDock",
-            "shift-escape": "workspace::CloseActiveDock",
-            // ... or other keybindings
-        },
-    },
-
     // Dock
     {
         "context": "Dock",
@@ -46,7 +36,15 @@
             "ctrl-w l": "workspace::ActivatePaneRight",
             "ctrl-w k": "workspace::ActivatePaneUp",
             "ctrl-w j": "workspace::ActivatePaneDown",
-            "ctrl-w": "workspace::CloseActiveDock",
+            // ... or other keybindings
+        },
+    },
+
+    // GitPanel
+    {
+        "context": "GitPanel || CommitEditor || GitCommit || Editor",
+        "bindings": {
+            "shift-escape": "workspace::CloseActiveDock",
             // ... or other keybindings
         },
     },
@@ -142,7 +140,6 @@
     {
         "context": "ProjectPanel",
         "bindings": {
-            "ctrl-w": "workspace::CloseActiveDock",
             "shift-escape": "workspace::CloseActiveDock",
         },
     },
@@ -151,7 +148,6 @@
     {
         "context": "Terminal",
         "bindings": {
-            "ctrl-w": "workspace::CloseActiveDock",
             "shift-escape": "workspace::CloseActiveDock",
         },
     },
