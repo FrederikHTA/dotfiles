@@ -67,6 +67,12 @@
         "bindings": {
             // Put key bindings here if you want them to work in normal & visual mode.
             "space n": "pane::RevealInProjectPanel",
+
+            // Better HJKL and Arrow key movement
+            "left": ["workspace::SendKeystrokes", "g h"],
+            "down": ["workspace::SendKeystrokes", "g j"],
+            "up": ["workspace::SendKeystrokes", "g k"],
+            "right": ["workspace::SendKeystrokes", "g l"],
         },
     },
 
@@ -104,10 +110,6 @@
             "j": ["workspace::SendKeystrokes", "g j"],
             "k": ["workspace::SendKeystrokes", "g k"],
             "l": ["workspace::SendKeystrokes", "g l"],
-            "left": ["workspace::SendKeystrokes", "g h"],
-            "down": ["workspace::SendKeystrokes", "g j"],
-            "up": ["workspace::SendKeystrokes", "g k"],
-            "right": ["workspace::SendKeystrokes", "g l"],
         },
     },
 
