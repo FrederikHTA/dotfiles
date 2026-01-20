@@ -79,6 +79,8 @@
         "context": "vim_mode == normal && !menu",
         "bindings": {
             "g u": "editor::FindAllReferences",
+            "g i": "editor::GoToImplementation",
+            "space r r": "editor::Rename",
             "space c l": "editor::GoToDiagnostic",
             "space c h": "editor::GoToPreviousDiagnostic",
             "space q": "pane::CloseActiveItem",
@@ -94,13 +96,13 @@
             "space g c": "git_panel::ToggleFocus",
 
             // Random Quality-of-life improvements
+            "shift-y": ["workspace::SendKeystrokes", "y $"], // Use neovim's yank behavior: yank to end of line.
             "backspace": ["workspace::SendKeystrokes", "c i w"],
             "ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"],
             "ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
             "n": ["workspace::SendKeystrokes", "n z z"],
             "N": ["workspace::SendKeystrokes", "N z z"],
             "ctrl-s": "editor::ShowSignatureHelp",
-            "g i": "editor::GoToImplementation",
 
             // Better HJKL and Arrow key movement
             "j": ["workspace::SendKeystrokes", "g j"],
