@@ -96,6 +96,18 @@
             "ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
             "n": ["workspace::SendKeystrokes", "n z z"],
             "N": ["workspace::SendKeystrokes", "N z z"],
+            "ctrl-s": "editor::ShowSignatureHelp",
+            "g i": "editor::GoToImplementation",
+
+            // Better HJKL and Arrow key movement
+            "h": ["workspace::SendKeystrokes", "g h"],
+            "j": ["workspace::SendKeystrokes", "g j"],
+            "k": ["workspace::SendKeystrokes", "g k"],
+            "l": ["workspace::SendKeystrokes", "g l"],
+            "left": ["workspace::SendKeystrokes", "g h"],
+            "down": ["workspace::SendKeystrokes", "g j"],
+            "up": ["workspace::SendKeystrokes", "g k"],
+            "right": ["workspace::SendKeystrokes", "g l"],
         },
     },
 
