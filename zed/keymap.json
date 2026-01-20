@@ -69,10 +69,8 @@
             "space n": "pane::RevealInProjectPanel",
 
             // Better HJKL and Arrow key movement
-            "left": ["workspace::SendKeystrokes", "g h"],
             "down": ["workspace::SendKeystrokes", "g j"],
             "up": ["workspace::SendKeystrokes", "g k"],
-            "right": ["workspace::SendKeystrokes", "g l"],
         },
     },
 
@@ -96,7 +94,6 @@
             "space g c": "git_panel::ToggleFocus",
 
             // Random Quality-of-life improvements
-            "shift-y": ["workspace::SendKeystrokes", "y $"], // Use neovim's yank behavior: yank to end of line.
             "backspace": ["workspace::SendKeystrokes", "c i w"],
             "ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"],
             "ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
@@ -106,10 +103,8 @@
             "g i": "editor::GoToImplementation",
 
             // Better HJKL and Arrow key movement
-            "h": ["workspace::SendKeystrokes", "g h"],
             "j": ["workspace::SendKeystrokes", "g j"],
             "k": ["workspace::SendKeystrokes", "g k"],
-            "l": ["workspace::SendKeystrokes", "g l"],
         },
     },
 
