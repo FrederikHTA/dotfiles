@@ -44,6 +44,9 @@ create_symlink() {
 create_symlink "$DOTFILES_DIR/zed/settings.json" "$HOME/.config/zed/settings.json"
 create_symlink "$DOTFILES_DIR/zed/keymap.json" "$HOME/.config/zed/keymap.json"
 
+# Neovim
+create_symlink "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
+
 # IdeaVim (JetBrains IDEs)
 create_symlink "$DOTFILES_DIR/.ideavimrc" "$HOME/.ideavimrc"
 
