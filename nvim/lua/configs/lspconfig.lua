@@ -20,14 +20,6 @@ M.on_attach = function(_, bufnr)
   map("n", "<C-s>", vim.lsp.buf.signature_help, opts "Show function signature")
   map("n", "<leader>rr", vim.lsp.buf.rename, opts "Rename variable")
   map("n", "<leader>ca", vim.lsp.buf.code_action, opts "Code Action")
-
-  -- TODO: Not sure what these do lol
-  -- nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
-  -- map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts "Add workspace folder")
-  -- map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts "Remove workspace folder")
-  -- map("n", "<leader>wl", function()
-  --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  -- end, opts "List workspace folders")
 end
 
 -- disable semanticTokens
@@ -58,51 +50,47 @@ M.capabilities.textDocument.completion.completionItem = {
 }
 
 M.defaults = function()
+  -- Register LspAttach autocmd for keymaps
   vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
       M.on_attach(_, args.buf)
     end,
   })
 
-  local lua_lsp_settings = {
-    Lua = {
-      runtime = { version = "LuaJIT" },
-      workspace = {
-        library = {
-          vim.fn.expand "$VIMRUNTIME/lua",
-          vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types",
-          vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy",
-          "${3rd}/luv/library",
+  -- Apply defaults to all LSP servers
+  vim.lsp.config("*", {
+    capabilities = M.capabilities,
+    on_init = M.on_init,
+  })
+
+  -- Per-server configuration
+  vim.lsp.config("lua_ls", {
+    settings = {
+      Lua = {
+        runtime = { version = "LuaJIT" },
+        workspace = {
+          library = {
+            vim.fn.expand "$VIMRUNTIME/lua",
+            vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types",
+            vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy",
+            "${3rd}/luv/library",
+          },
         },
       },
     },
-  }
+  })
 
-  -- Support 0.10 temporarily
-  local lspconfig = require "lspconfig"
+  vim.lsp.config("zls", {
+    cmd = { "zls" },
+  })
 
-  local servers = {
+  -- Enable servers
+  vim.lsp.enable({
     "cssls",
     "html",
     -- "zls",
     "lua_ls",
-  }
-
-  vim.lsp.enable(servers)
-
-  lspconfig.lua_ls.setup {
-    capabilities = capabilities,
-    on_init = M.on_init,
-    on_attach = on_attach,
-    settings = lua_lsp_settings,
-  }
-
-  lspconfig.zls.setup {
-    on_attach = on_attach,
-    on_init = M.on_init,
-    capabilities = capabilities,
-    cmd = { "zls" },
-  }
+  })
 end
 
 return M
