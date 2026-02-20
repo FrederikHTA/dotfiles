@@ -26,6 +26,14 @@
         "show_nav_history_buttons": false,
         "show_tab_bar_buttons": false,
     },
+    "status_bar": {
+        "cursor_position_button": false,
+    },
+    "diagnostics": {
+        "inline": {
+            "enabled": true,
+        },
+    },
     "project_panel": {
         "dock": "right",
     },
