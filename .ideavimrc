@@ -12,12 +12,15 @@ set number relativenumber
 set idearefactormode=keep
 set ideajoin
 set incsearch
-set clipboard+=unnamed
+"set clipboard+=unnamed
+set clipboard^=unnamedplus
+
 set showmode
 set showcmd
 set ignorecase
 set smartcase
 set hlsearch
+
 
 " Don't use Ex mode, use Q for formatting.
 map Q gq
