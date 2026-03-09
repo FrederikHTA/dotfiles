@@ -7,9 +7,17 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+    "agent": {
+        "default_model": {
+            "provider": "copilot_chat",
+            "model": "gpt-5.3-codex"
+        },
+        "favorite_models": [],
+        "model_parameters": []
+    },
     "icon_theme": "Material Icon Theme",
     "ui_font_size": 20,
-    "buffer_font_size": 24,
+    "buffer_font_size": 26.0,
     "buffer_font_weight": 500,
     "theme": {
         "mode": "system",

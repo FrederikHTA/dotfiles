@@ -96,8 +96,6 @@
             // Random Quality-of-life improvements
             "shift-y": ["workspace::SendKeystrokes", "y $"], // Use neovim's yank behavior: yank to end of line.
             "backspace": ["workspace::SendKeystrokes", "c i w"],
-            "ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"],
-            "ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
             "n": ["workspace::SendKeystrokes", "n z z"],
             "N": ["workspace::SendKeystrokes", "N z z"],
             "ctrl-s": "editor::ShowSignatureHelp",
@@ -105,6 +103,15 @@
             // Better HJKL and Arrow key movement
             "j": ["workspace::SendKeystrokes", "g j"],
             "k": ["workspace::SendKeystrokes", "g k"],
+        },
+    },
+
+    // vim_mode == normal && not_editing - Allows for scrolling docs using ctrl-u and ctrl-d
+    {
+        "context": "vim_mode == normal && not_editing",
+        "bindings": {
+            "ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"],
+            "ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
         },
     },
 
