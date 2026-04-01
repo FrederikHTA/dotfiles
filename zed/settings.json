@@ -8,7 +8,7 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
     "terminal": {
-        "font_size": 20.0
+        "font_size": 20.0,
     },
     "soft_wrap": "prefer_line",
     "agent": {
