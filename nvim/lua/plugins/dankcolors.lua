@@ -4,10 +4,10 @@ return {
 		priority = 1000,
 		config = function()
 			require('base16-colorscheme').setup({
-				base00 = '#1b1b1b',
-				base01 = '#1b1b1b',
-				base02 = '#7b7d74',
-				base03 = '#7b7d74',
+				base00 = '#141617',
+				base01 = '#141617',
+				base02 = '#7a7c73',
+				base03 = '#7a7c73',
 				base04 = '#bdbfb3',
 				base05 = '#fdfff8',
 				base06 = '#fdfff8',
@@ -23,15 +23,15 @@ return {
 			})
 
 			vim.api.nvim_set_hl(0, 'Visual', {
-				bg = '#7b7d74',
+				bg = '#7a7c73',
 				fg = '#fdfff8',
 				bold = true
 			})
 			vim.api.nvim_set_hl(0, 'Statusline', {
 				bg = '#bbc87c',
-				fg = '#1b1b1b',
+				fg = '#141617',
 			})
-			vim.api.nvim_set_hl(0, 'LineNr', { fg = '#7b7d74' })
+			vim.api.nvim_set_hl(0, 'LineNr', { fg = '#7a7c73' })
 			vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#f5fecb', bold = true })
 
 			vim.api.nvim_set_hl(0, 'Statement', {
@@ -70,7 +70,7 @@ return {
 			vim.api.nvim_set_hl(0, '@punctuation.delimiter', { link = 'Delimiter' })
 
 			vim.api.nvim_set_hl(0, 'Comment', {
-				fg = '#7b7d74',
+				fg = '#7a7c73',
 				italic = true
 			})
 

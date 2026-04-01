@@ -7,13 +7,18 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+    "terminal": {
+        "font_size": 20.0
+    },
+    "soft_wrap": "prefer_line",
     "agent": {
+        "default_profile": "write",
         "default_model": {
             "provider": "copilot_chat",
-            "model": "gpt-5.3-codex"
+            "model": "gpt-5.3-codex",
         },
         "favorite_models": [],
-        "model_parameters": []
+        "model_parameters": [],
     },
     "icon_theme": "Material Icon Theme",
     "ui_font_size": 20,
@@ -49,4 +54,5 @@
         "dock": "right",
     },
     "tab_size": 4,
+    "scroll_beyond_last_line": "vertical_scroll_margin",
 }
