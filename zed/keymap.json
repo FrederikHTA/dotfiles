@@ -150,10 +150,14 @@
 
     // ProjectPanel
     {
-        "context": "ProjectPanel",
+        "context": "ProjectPanel && !editing",
         "bindings": {
             "shift-escape": "workspace::CloseActiveDock",
             "x": "project_panel::CollapseSelectedEntry",
+            "enter": [
+                "workspace::SendKeystrokes",
+                "enter space n shift-escape",
+            ],
         },
     },
 
