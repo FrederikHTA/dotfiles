@@ -132,7 +132,7 @@ map <leader>fw <Action>(FindInPath)
 let g:WhichKeyDesc_tools = "<Space>s Intellij tool windows"
 map <leader>sb <Action>(ActivateBuildToolWindow)
 map <leader>st <Action>(ActivateTerminalToolWindow)
-map <leader>ss <Action>(Switcher)
+map <leader>ss <Action>(RecentFiles)
 map <leader>sn <Action>(ActivateNuGetToolWindow)
 map <leader>sS <Action>(BuildWholeSolutionAction)
 map <leader>sB <Action>(BuildCurrentProject)

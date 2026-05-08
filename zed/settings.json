@@ -7,39 +7,50 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+    "theme": {
+        "mode": "dark",
+        "light": "One Light",
+        "dark": "Ayu Mirage"
+    },
+    "auto_update_extensions": {
+        "csharp": false
+    },
+    "outline_panel": {
+        "dock": "right",
+    },
+    "collaboration_panel": {
+        "dock": "right",
+    },
     "autosave": {
         "after_delay": {
-            "milliseconds": 1000
-        }
+            "milliseconds": 1000,
+        },
     },
+    "code_lens": "on",
     "terminal": {
         "font_size": 20.0,
     },
     "soft_wrap": "prefer_line",
     "agent": {
+        "dock": "right",
         "default_profile": "write",
         "default_model": {
             "effort": "high",
             "enable_thinking": true,
-            "provider": "anthropic",
-            "model": "claude-sonnet-4-6-latest",
+            "provider": "copilot_chat",
+            "model": "gpt-5.4",
         },
         "favorite_models": [],
         "model_parameters": [],
     },
     "icon_theme": {
-        "mode": "light",
+        "mode": "dark",
         "light": "Material Icon Theme",
         "dark": "Material Icon Theme",
     },
     "ui_font_size": 20,
     "buffer_font_size": 24.0,
     "buffer_font_weight": 500,
-    "theme": {
-        "mode": "dark",
-        "light": "Gruvbox Light",
-        "dark": "Ayu Dark",
-    },
     "vim_mode": true,
     "relative_line_numbers": "enabled",
     "vertical_scroll_margin": 8,
@@ -56,6 +67,7 @@
     "diagnostics": {
         "inline": {
             "enabled": true,
+            "max_severity": "info",
         },
     },
     "project_panel": {

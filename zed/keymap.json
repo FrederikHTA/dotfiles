@@ -87,6 +87,7 @@
             "space c h": "editor::GoToPreviousDiagnostic",
             "space q": "pane::CloseActiveItem",
             "space b": "editor::ToggleBreakpoint",
+            "s": "vim::HelixJumpToWord",
 
             // Agent
             "space g C": "agent::ToggleFocus",
@@ -154,10 +155,10 @@
         "bindings": {
             "shift-escape": "workspace::CloseActiveDock",
             "x": "project_panel::CollapseSelectedEntry",
-            "enter": [
-                "workspace::SendKeystrokes",
-                "enter space n shift-escape",
-            ],
+            // "enter": [
+            //     "workspace::SendKeystrokes",
+            //     "enter space n shift-escape",
+            // ],
         },
     },
 
