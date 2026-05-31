@@ -42,9 +42,11 @@ create_symlink() {
 
 # Zed editor
 create_symlink "$DOTFILES_DIR/zed/settings.json" "$HOME/.config/zed/settings.json"
+create_symlink "$DOTFILES_DIR/zed/settings.json" "$HOME/AppData/Roaming/Zed/settings.json"
 create_symlink "$DOTFILES_DIR/zed/keymap.json" "$HOME/.config/zed/keymap.json"
-create_symlink "$DOTFILES_DIR/zed/settings.json" "$HOME/.var/app/dev.zed.Zed/config/zed/settings.json"
-create_symlink "$DOTFILES_DIR/zed/keymap.json" "$HOME/.var/app/dev.zed.Zed/config/zed/keymap.json"
+create_symlink "$DOTFILES_DIR/zed/keymap.json" "$HOME/AppData/Roaming/Zed/keymap.json"
+# create_symlink "$DOTFILES_DIR/zed/settings.json" "$HOME/.var/app/dev.zed.Zed/config/zed/settings.json"
+# create_symlink "$DOTFILES_DIR/zed/keymap.json" "$HOME/.var/app/dev.zed.Zed/config/zed/keymap.json"
 
 # Neovim
 create_symlink "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
