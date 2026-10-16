@@ -21,7 +21,7 @@
 
     // Workspace
     {
-        "context": "Editor && vim_mode != insert",
+        "context": "Editor && vim_mode != insert && !menu && !BufferSearchBar && !ProjectSearchBar && !FileFinder",
         "bindings": {
             "space f f": "file_finder::Toggle",
             "space f w": "pane::DeploySearch",
