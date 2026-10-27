@@ -1,0 +1,83 @@
+#!/bin/bash
+
+CONFIG_DIR="${CONFIG_DIR:-$HOME/.config/sketchybar}"
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+. "$CONFIG_DIR/colors.sh"
+
+# FelixKratz-inspired styling; keep the existing FlashSpace integration.
+# Keep Rectangle's screenEdgeGapTop equal to this bar's height.
+sketchybar --bar position=top height=40 color="$BAR_COLOR" blur_radius=30 \
+  topmost=window font_smoothing=on padding_left=10 padding_right=10
+
+default=(
+  padding_left=4
+  padding_right=4
+  icon.font="Hack Nerd Font:Regular:16.0"
+  label.font="Helvetica Neue:Medium:13.0"
+  icon.color="$TEXT_COLOR"
+  label.color="$TEXT_COLOR"
+  icon.padding_left=9
+  icon.padding_right=4
+  label.padding_left=4
+  label.padding_right=9
+  background.drawing=on
+  background.color="$ITEM_COLOR"
+  background.height=28
+  background.corner_radius=9
+  background.border_width=2
+  background.border_color="$BORDER_COLOR"
+)
+sketchybar --default "${default[@]}"
+
+sketchybar --add event flashspace_workspace_change
+SID=1
+while IFS= read -r workspace; do
+  printf -v workspace_arg '%q' "$workspace"
+  sketchybar --add item flashspace.$SID left \
+    --set flashspace.$SID \
+      icon.drawing=off \
+      label="$workspace" \
+      label.color="$MUTED_COLOR" \
+      label.padding_left=11 \
+      label.padding_right=11 \
+      script="\"$PLUGIN_DIR/flashspace.sh\" $workspace_arg" \
+      click_script="flashspace workspace --number $SID" \
+    --subscribe flashspace.$SID flashspace_workspace_change
+  SID=$((SID + 1))
+done < <(flashspace list-workspaces)
+
+sketchybar --add item front_app left \
+  --set front_app icon.drawing=off background.drawing=off \
+    label.font="Helvetica Neue:Bold:13.0" \
+    padding_left=10 script="$PLUGIN_DIR/front_app.sh" \
+  --subscribe front_app front_app_switched
+
+# Right-side items are added from the outside in.
+sketchybar --add item clock right \
+  --set clock update_freq=10 \
+    icon.font="Helvetica Neue:Bold:12.0" \
+    background.color="$BORDER_COLOR" \
+    background.border_color="$MUTED_COLOR" \
+    background.border_width=1 \
+    script="$PLUGIN_DIR/clock.sh" \
+    click_script="open -a Calendar" \
+  --subscribe clock system_woke
+
+sketchybar --add item battery right \
+  --set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
+  --subscribe battery system_woke power_source_change
+
+sketchybar --add item volume right \
+  --set volume script="$PLUGIN_DIR/volume.sh" \
+  --subscribe volume volume_change system_woke
+
+sketchybar --add event spotify_change com.spotify.client.PlaybackStateChanged
+sketchybar --add item spotify right \
+  --set spotify icon= icon.color="$GREEN_COLOR" \
+    label.max_chars=45 scroll_texts=on \
+    drawing=off updates=on update_freq=10 \
+    script="$PLUGIN_DIR/spotify.sh" \
+    click_script="open -a Spotify" \
+  --subscribe spotify spotify_change system_woke
+
+sketchybar --update

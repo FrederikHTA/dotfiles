@@ -9,7 +9,8 @@
 
 set -e
 
-DOTFILES_DIR="$HOME/dotfiles"
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+OS="$(uname -s)"
 
 echo "Setting up dotfiles symlinks..."
 
@@ -17,23 +18,29 @@ echo "Setting up dotfiles symlinks..."
 create_symlink() {
     local source="$1"
     local target="$2"
-    local target_dir=$(dirname "$target")
+    local target_dir
+    target_dir=$(dirname "$target")
 
-    # Create target directory if it doesn't exist
-    if [ ! -d "$target_dir" ]; then
-        echo "Creating directory: $target_dir"
-        mkdir -p "$target_dir"
+    if [ ! -e "$source" ]; then
+        echo "Missing dotfile source: $source" >&2
+        return 1
     fi
 
-    # If target exists and is not a symlink, back it up
-    if [ -e "$target" ] && [ ! -L "$target" ]; then
-        echo "Backing up existing file: $target -> $target.backup"
-        mv "$target" "$target.backup"
+    if [ -L "$target" ] && [ "$(readlink "$target")" = "$source" ]; then
+        echo "Already linked: $target"
+        return 0
     fi
 
-    # Remove existing symlink if it exists
-    if [ -L "$target" ]; then
-        rm "$target"
+    mkdir -p "$target_dir"
+
+    if [ -e "$target" ] || [ -L "$target" ]; then
+        local backup="$target.backup" suffix=1
+        while [ -e "$backup" ] || [ -L "$backup" ]; do
+            backup="$target.backup.$suffix"
+            suffix=$((suffix + 1))
+        done
+        echo "Backing up existing config: $target -> $backup"
+        mv "$target" "$backup"
     fi
 
     echo "Linking: $source -> $target"
@@ -41,15 +48,18 @@ create_symlink() {
 }
 
 # Zed editor
-# Mac and Linux
-create_symlink "$DOTFILES_DIR/zed/settings.json" "$HOME/.config/zed/settings.json"
-create_symlink "$DOTFILES_DIR/zed/keymap.json" "$HOME/.config/zed/keymap.json"
+case "$OS" in
+    Darwin|Linux) ZED_CONFIG_DIR="$HOME/.config/zed" ;;
+    MINGW*|MSYS*|CYGWIN*) ZED_CONFIG_DIR="$HOME/AppData/Roaming/Zed" ;;
+    *) echo "Unsupported platform: $OS" >&2; exit 1 ;;
+esac
+create_symlink "$DOTFILES_DIR/zed/settings.json" "$ZED_CONFIG_DIR/settings.json"
+create_symlink "$DOTFILES_DIR/zed/keymap.json" "$ZED_CONFIG_DIR/keymap.json"
 
-# Windows
-create_symlink "$DOTFILES_DIR/zed/settings.json" "$HOME/AppData/Roaming/Zed/settings.json"
-create_symlink "$DOTFILES_DIR/zed/keymap.json" "$HOME/AppData/Roaming/Zed/keymap.json"
-# create_symlink "$DOTFILES_DIR/zed/settings.json" "$HOME/.var/app/dev.zed.Zed/config/zed/settings.json"
-# create_symlink "$DOTFILES_DIR/zed/keymap.json" "$HOME/.var/app/dev.zed.Zed/config/zed/keymap.json"
+# macOS desktop apps are not configured on Windows or Linux.
+if [ "$OS" = "Darwin" ]; then
+    create_symlink "$DOTFILES_DIR/macos/sketchybar" "$HOME/.config/sketchybar"
+fi
 
 # Neovim
 create_symlink "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
@@ -58,6 +68,6 @@ create_symlink "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
 create_symlink "$DOTFILES_DIR/.ideavimrc" "$HOME/.ideavimrc"
 
 # Agent Skills
-create_symlink "$DOTFILES_DIR/skills" "$HOME/.claude/skills"
+create_symlink "$DOTFILES_DIR/skills" "$HOME/.agents/skills"
 
 echo "Dotfiles setup complete!"
