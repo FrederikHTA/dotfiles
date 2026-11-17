@@ -28,7 +28,7 @@ and rounded panels, without his other dotfiles or Lua setup.
 
 - Left: FlashSpace workspaces (off-white active, grey inactive) and the focused app.
 - Right: Spotify song/artist while playing, volume, battery percentage, date/time.
-- A 40px bar stays above normal windows; Rectangle reserves the matching gap.
+- A 40-point bar stays above normal windows; Rectangle reserves the matching gap.
 - Workspace/window shortcuts remain owned by FlashSpace and Rectangle. No new
   global keybindings or mouse controls are installed.
 
@@ -71,16 +71,24 @@ and reloads when the profile changes.
 
 ### Rectangle gap
 
-Reserve the bar's height when snapping or maximizing windows:
+Rectangle adds screen-edge gaps **after** macOS's reserved menu-bar/notch area.
+With the menu bar hidden, external displays need the full 40-point bar height.
+This MacBook already reserves 32 points for its notch, so it needs only 8 more:
 
 ```sh
 defaults write com.knollsoft.Rectangle screenEdgeGapTop -int 40
+defaults write com.knollsoft.Rectangle screenEdgeGapTopNotch -int 8
 ```
 
-Quit and reopen Rectangle, then re-snap existing windows. Keep this value equal
-to `height` in `macos/sketchybar/sketchybarrc` if changing the bar height. This
-does not constrain manual window dragging or native macOS fullscreen; use
-Rectangle **Maximize** to fill the screen below the bar.
+The notch-specific value replaces the regular gap on notched displays, so both
+displays leave exactly 40 points in total without switching settings when docking.
+These are logical points, not physical Retina pixels. For a different bar height
+or display scaling, use `max(0, bar height - macOS reserved top inset)` for each
+display type; the reserved inset is `NSScreen.frame.maxY - NSScreen.visibleFrame.maxY`.
+
+Quit and reopen Rectangle, then re-snap existing windows. This does not constrain
+manual window dragging or native macOS fullscreen; use Rectangle **Maximize**
+to fill the screen below the bar.
 
 ### Permissions and Spotify
 

@@ -5,7 +5,7 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 . "$CONFIG_DIR/colors.sh"
 
 # FelixKratz-inspired styling; keep the existing FlashSpace integration.
-# Keep Rectangle's screenEdgeGapTop equal to this bar's height.
+# Rectangle gaps supplement macOS's reserved top inset; see README for notch settings.
 sketchybar --bar position=top height=40 color="$BAR_COLOR" blur_radius=30 \
   topmost=window font_smoothing=on padding_left=10 padding_right=10
 

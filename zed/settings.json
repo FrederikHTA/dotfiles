@@ -29,7 +29,7 @@
     },
     "code_lens": "on",
     "terminal": {
-        "font_size": 16.0,
+        "font_size": 20.0,
         "shell": "system",
         "env": {
             "LW_TERMINAL_UI": "true"
@@ -54,7 +54,7 @@
         "dark": "Material Icon Theme",
     },
     "ui_font_size": 18,
-    "buffer_font_size": 20.0,
+    "buffer_font_size": 26.0,
     "buffer_font_weight": 400,
     "buffer_font_family": "JetBrainsMono Nerd Font Mono",
     "vim_mode": true,
