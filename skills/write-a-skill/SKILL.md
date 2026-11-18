@@ -1,9 +1,11 @@
 ---
 name: write-a-skill
-description: Create new agent skills with proper structure, progressive disclosure, and bundled resources. Use when user wants to create, write, or build a new skill.
+description: Create or revise Agent Skills with portable metadata, progressive disclosure, and supporting files. Use when the user asks to create, update, or validate an agent skill.
 ---
 
 # Writing Skills
+
+Follow the [Agent Skills specification](https://agentskills.io/specification). Make the directory name match the frontmatter `name`, and use relative paths for bundled resources.
 
 ## Process
 
@@ -14,9 +16,9 @@ description: Create new agent skills with proper structure, progressive disclosu
    - Any reference materials to include?
 
 2. **Draft the skill** - create:
-   - SKILL.md with concise instructions
-   - Additional reference files if content exceeds 500 lines
-   - Utility scripts if deterministic operations needed
+   - `SKILL.md` with required `name` and `description` frontmatter and concise instructions
+   - Focused references for details needed only in some situations
+   - Utility scripts if deterministic operations need them
 
 3. **Review with user** - present draft and ask:
    - Does this cover your use cases?
@@ -28,10 +30,9 @@ description: Create new agent skills with proper structure, progressive disclosu
 ```
 skill-name/
 ├── SKILL.md           # Main instructions (required)
-├── REFERENCE.md       # Detailed docs (if needed)
-├── EXAMPLES.md        # Usage examples (if needed)
-└── scripts/           # Utility scripts (if needed)
-    └── helper.js
+├── references/        # Focused details (optional)
+├── assets/            # Templates and resources (optional)
+└── scripts/           # Utility scripts (optional)
 ```
 
 ## SKILL.md Template
@@ -54,7 +55,7 @@ description: Brief description of capability. Use when [specific triggers].
 
 ## Advanced features
 
-[Link to separate files: See [REFERENCE.md](REFERENCE.md)]
+[Say when to read a separate reference, if one is needed.]
 ```
 
 ## Description Requirements
@@ -68,7 +69,7 @@ The description is **the only thing your agent sees** when deciding which skill 
 
 **Format**:
 
-- Max 1024 chars
+- Max 1024 chars; name must match its directory and use lowercase letters, numbers, and hyphens
 - Write in third person
 - First sentence: what it does
 - Second sentence: "Use when [specific triggers]"
@@ -101,17 +102,16 @@ Scripts save tokens and improve reliability vs generated code.
 
 Split into separate files when:
 
-- SKILL.md exceeds 100 lines
-- Content has distinct domains (finance vs sales schemas)
-- Advanced features are rarely needed
+- `SKILL.md` approaches the specification's recommended 500 lines or 5,000 tokens
+- Content has distinct domains or advanced features are rarely needed
+- The main instructions can state when to load each reference
 
 ## Review Checklist
 
 After drafting, verify:
 
-- [ ] Description includes triggers ("Use when...")
-- [ ] SKILL.md under 100 lines
-- [ ] No time-sensitive info
-- [ ] Consistent terminology
-- [ ] Concrete examples included
-- [ ] References one level deep
+- [ ] Name matches the directory; description states what the skill does and when to use it
+- [ ] Frontmatter uses specification fields and string-valued metadata; document any intentional client-specific fields
+- [ ] Preserve explicit-only controls such as Pi's `disable-model-invocation` when needed
+- [ ] Main instructions are concise; references are relative, focused, and loaded when needed
+- [ ] Referenced files exist; examples and tool requirements are appropriate to the target environment

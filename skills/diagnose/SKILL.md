@@ -1,6 +1,6 @@
 ---
 name: diagnose
-description: Disciplined diagnosis loop for hard bugs and performance regressions. Reproduce → minimise → hypothesise → instrument → fix → regression-test. Use when user says "diagnose this" / "debug this", reports a bug, says something is broken/throwing/failing, or describes a performance regression.
+description: Investigate hard-to-explain bugs, flaky failures, and performance regressions with a reproduce–hypothesize–test loop. Use when the user asks to diagnose or debug, or when the cause is unclear and needs systematic investigation. Do not use the full workflow for an obvious, localized fix.
 ---
 
 # Diagnose

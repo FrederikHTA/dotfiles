@@ -2,7 +2,6 @@
 name: untangle-codebase
 description: Find and classify what a codebase needs untangled, preview the proposed changes for the user to choose from, then implement only the approved ones, so agents working in it read less per change, break less without noticing, and debug faster.
 disable-model-invocation: true
-argument-hint: "[optional area or concern to focus on]"
 ---
 
 Find what is tangled in this codebase, classify it, and preview the proposed changes for the user. Implement only what the user approves.

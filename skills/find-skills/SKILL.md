@@ -1,6 +1,6 @@
 ---
 name: find-skills
-description: Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities. This skill should be used when the user is looking for functionality that might exist as an installable skill.
+description: Find and evaluate installable agent skills. Use when the user explicitly asks to find, compare, or install a skill, or asks whether an existing skill provides a capability. Do not trigger on ordinary how-to questions.
 ---
 
 # Find Skills
@@ -11,12 +11,11 @@ This skill helps you discover and install skills from the open agent skills ecos
 
 Use this skill when the user:
 
-- Asks "how do I do X" where X might be a common task with an existing skill
 - Says "find a skill for X" or "is there a skill for X"
-- Asks "can you do X" where X is a specialized capability
-- Expresses interest in extending agent capabilities
-- Wants to search for tools, templates, or workflows
-- Mentions they wish they had help with a specific domain (design, testing, deployment, etc.)
+- Wants to discover, compare, or install agent skills
+- Explicitly asks for an existing skill to extend agent capabilities
+
+Answer ordinary how-to and capability questions directly unless the user asks for a skill.
 
 ## What is the Skills CLI?
 

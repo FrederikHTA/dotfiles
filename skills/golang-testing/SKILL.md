@@ -1,46 +1,31 @@
 ---
 name: golang-testing
-description: "Production-ready Golang tests — table-driven tests, testify suites and mocks, parallel tests, fuzzing, fixtures, goroutine leak detection with goleak, snapshot testing, code coverage, integration tests, idiomatic test naming. Use when writing or reviewing Go tests, choosing a testing approach, setting up Go test CI, or debugging flaky/slow tests. For testify-specific APIs see `samber/cc-skills-golang@golang-stretchr-testify`; for measurement methodology see `samber/cc-skills-golang@golang-benchmark`."
-user-invocable: true
+description: Write, review, or debug Go tests, including table-driven tests, fixtures, mocks, concurrency, fuzzing, integration tests, and coverage. Use for Go test design, flaky tests, or test CI.
 license: MIT
-compatibility: Designed for Claude Code, Codex or similar harness, and for projects using Golang.
+compatibility: Requires Go; gotests is optional.
 metadata:
   author: samber
   version: "1.4.0"
-  openclaw:
-    emoji: "🧪"
-    homepage: https://github.com/samber/cc-skills-golang
-    requires:
-      bins:
-        - go
-        - gotests
-    install:
-      - kind: go
-        package: github.com/cweill/gotests/gotests@latest
-        bins: [gotests]
+  source: https://github.com/samber/cc-skills-golang
 allowed-tools: Read Edit Write Glob Grep Bash(go:*) Bash(golangci-lint:*) Bash(git:*) Agent Bash(gotests:*) AskUserQuestion
-paths:
-  - "**/*.go"
 ---
 
 **Persona:** You are a Go engineer who treats tests as executable specifications. You write tests to constrain behavior, not to hit coverage targets.
 
-**Thinking mode:** Reason as thoroughly as possible for test strategy design and failure analysis — shallow reasoning misses edge cases and produces brittle tests that pass today but break tomorrow. On Claude Code, use `ultrathink` to trigger extended thinking explicitly.
+Follow repository instructions and established test conventions before these community defaults, including build tags, file layout, fixture setup, and test commands. Apply the same precedence to the bundled references. Adapt their examples rather than running them blindly; avoid arbitrary sleeps and destructive cleanup against shared resources. Other `samber/cc-skills-golang` skills mentioned below and in the references are optional and not bundled; check whether they are available before relying on them.
 
-**Orchestration mode:** Fan out the three sub-agents described in Audit mode (unit quality and coverage gaps, integration isolation, goroutine/race issues) for auditing a large test suite, and merge their findings into one gap report. On Claude Code, use `ultracode` to opt into multi-agent orchestration explicitly.
+For large audits, use parallel sub-agents if available; otherwise inspect each concern sequentially.
 
 **Modes:**
 
-- **Write mode** — generating new tests for existing or new code. Work sequentially through the code under test; use `gotests` to scaffold table-driven tests, then enrich with edge cases and error paths.
+- **Write mode** — generating new tests for existing or new code. Work sequentially through the code under test; optionally use an installed `gotests` to scaffold table-driven tests, then enrich with edge cases and error paths.
 - **Review mode** — reviewing a PR's test changes. Focus on the diff: check coverage of new behaviour, assertion quality, table-driven structure, and absence of flakiness patterns. Sequential.
-- **Audit mode** — auditing an existing test suite for gaps, flakiness, or bad patterns (order-dependent tests, missing `t.Parallel()`, implementation-detail coupling). Launch up to 3 parallel sub-agents split by concern: (1) unit test quality and coverage gaps, (2) integration test isolation and build tags, (3) goroutine leaks and race conditions.
+- **Audit mode** — auditing an existing test suite for gaps, flakiness, or bad patterns (order-dependent tests, unsafe parallelism, implementation-detail coupling). Inspect (1) unit test quality and coverage gaps, (2) integration test isolation and build tags, and (3) goroutine leaks and race conditions; use up to three sub-agents if available.
 - **Debug mode** — a test is failing or flaky. Work sequentially: reproduce reliably, isolate the failing assertion, trace the root cause in production code or test setup.
 
 > **Community default.** A company skill that explicitly supersedes `samber/cc-skills-golang@golang-testing` skill takes precedence.
 
-**Dependencies:**
-
-- gotests: `go install github.com/cweill/gotests/gotests@latest`
+**Optional tool:** `gotests` can scaffold table-driven tests. Use it only if already available or installation is appropriate for the task.
 
 # Go Testing Best Practices
 
