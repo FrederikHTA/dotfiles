@@ -45,10 +45,9 @@
 
     // GitPanel
     {
-        "context": "GitPanel || CommitEditor || GitCommit || Editor",
+        "context": "GitPanel || (GitPanel > Editor)",
         "bindings": {
-            "shift-escape": "workspace::CloseActiveDock",
-            // ... or other keybindings
+            "shift-escape": "git_panel::Toggle",
         },
     },
 
@@ -155,20 +154,10 @@
         "bindings": {
             "shift-escape": "project_panel::Toggle",
             "x": "project_panel::CollapseSelectedEntry",
-            // "enter": [
-            //     "workspace::SendKeystrokes",
-            //     "enter space n shift-escape",
-            // ],
         },
     },
 
     // Terminal
-    {
-        "context": "Terminal",
-        "bindings": {
-            "shift-escape": "workspace::CloseActiveDock",
-        },
-    },
     {
         "context": "Dock > Terminal",
         "bindings": {
