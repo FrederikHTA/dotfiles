@@ -153,7 +153,7 @@
     {
         "context": "ProjectPanel && !editing",
         "bindings": {
-            "shift-escape": "workspace::CloseActiveDock",
+            "shift-escape": "project_panel::Toggle",
             "x": "project_panel::CollapseSelectedEntry",
             // "enter": [
             //     "workspace::SendKeystrokes",
