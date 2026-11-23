@@ -169,4 +169,10 @@
             "shift-escape": "workspace::CloseActiveDock",
         },
     },
+    {
+        "context": "Dock > Terminal",
+        "bindings": {
+            "shift-escape": "terminal_panel::Toggle",
+        },
+    },
 ]
