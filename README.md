@@ -23,12 +23,14 @@ permission to create symlinks.
 
 ## macOS: SketchyBar + FlashSpace
 
-The bar uses [FelixKratz's palette](https://github.com/FelixKratz/dotfiles/blob/master/.config/sketchybar/colors.lua)
-and rounded panels, without his other dotfiles or Lua setup.
+The bar uses a Kanagawa wave-inspired palette and transparent, floating panels
+inspired by [wthrajat's dotfiles](https://github.com/wthrajat/dotfiles-mac).
 
-- Left: FlashSpace workspaces (off-white active, grey inactive) and the focused app.
-- Right: Spotify song/artist while playing, volume, battery percentage, date/time.
-- A 40-point bar stays above normal windows; Rectangle reserves the matching gap.
+- Left: FlashSpace workspaces (highlighted active workspace) and the focused app.
+- Right: Spotify song/artist while playing, weather in Celsius, volume, battery
+  percentage, and date/time. Click the date to open Calendar.
+- Rectangle leaves 20 points between windows and around the visible bar pills;
+  the outer pills align with the 20-point window margins.
 - Workspace/window shortcuts remain owned by FlashSpace and Rectangle. No new
   global keybindings or mouse controls are installed.
 
@@ -69,26 +71,33 @@ Profiles are intentionally not copied into this repo: display assignments and
 app choices are machine-specific. The bar reads the active profile at startup
 and reloads when the profile changes.
 
-### Rectangle gap
+### Rectangle gaps
 
-Rectangle adds screen-edge gaps **after** macOS's reserved menu-bar/notch area.
-With the menu bar hidden, external displays need the full 40-point bar height.
-This MacBook already reserves 32 points for its notch, so it needs only 8 more:
+Rectangle's 20-point gap applies to screen edges and between snapped windows.
+The visible 24-point pills are centered in the 40-point bar, so their bottom is
+32 points from the top of the screen. Reserve those 32 points separately; the
+window gap then leaves another 20 points below the pills. With the menu bar
+hidden, external displays need a 32-point top reservation. This MacBook already
+reserves 32 points for its notch, so it needs no additional reservation:
 
 ```sh
-defaults write com.knollsoft.Rectangle screenEdgeGapTop -int 40
-defaults write com.knollsoft.Rectangle screenEdgeGapTopNotch -int 8
+defaults write com.knollsoft.Rectangle gapSize -float 20
+defaults write com.knollsoft.Rectangle applyGapsToMaximize -int 1
+defaults write com.knollsoft.Rectangle skipGapTopEdge -bool false
+defaults write com.knollsoft.Rectangle screenEdgeGapTop -int 32
+defaults write com.knollsoft.Rectangle screenEdgeGapTopNotch -int 0
+defaults write com.knollsoft.Rectangle screenEdgeGapLeft -int 0
+defaults write com.knollsoft.Rectangle screenEdgeGapRight -int 0
+defaults write com.knollsoft.Rectangle screenEdgeGapBottom -int 0
 ```
 
-The notch-specific value replaces the regular gap on notched displays, so both
-displays leave exactly 40 points in total without switching settings when docking.
-These are logical points, not physical Retina pixels. For a different bar height
-or display scaling, use `max(0, bar height - macOS reserved top inset)` for each
-display type; the reserved inset is `NSScreen.frame.maxY - NSScreen.visibleFrame.maxY`.
+The notch-specific value replaces the regular top reservation on notched
+displays. These are logical points, not physical Retina pixels. If the bar
+changes, use `max(0, visible pill bottom - macOS reserved top inset)` for each
+display type; the inset is `NSScreen.frame.maxY - NSScreen.visibleFrame.maxY`.
 
-Quit and reopen Rectangle, then re-snap existing windows. This does not constrain
-manual window dragging or native macOS fullscreen; use Rectangle **Maximize**
-to fill the screen below the bar.
+Quit and reopen Rectangle, then re-snap existing windows. These gaps apply to
+Rectangle layouts, not manual dragging or native macOS fullscreen.
 
 ### Permissions and Spotify
 
@@ -97,6 +106,14 @@ Allow SketchyBar to control Spotify when macOS asks; the widget only reads the
 playing track and does not change playback. It hides when paused, stopped, or
 closed. Spotify notifications update it on track changes, with a 10-second
 fallback refresh. It uses the desktop app, not Spotify's web player.
+
+### Weather
+
+Weather uses [wttr.in](https://wttr.in/) without an API key and refreshes every
+30 minutes and on wake. It is set to Aarhus, Denmark; requests disclose your IP
+address to the service. To choose another city, edit the URL in
+`macos/sketchybar/plugins/weather.sh` (encode spaces as `%20`), then reload the
+bar. If the service is unavailable, the pill shows `Weather --°C`.
 
 ### Editing
 
@@ -118,6 +135,7 @@ real configuration, window layout, audio, or Spotify playback.
 ```sh
 bash tests/symlinks.sh
 bash macos/sketchybar/tests/flashspace.sh
+bash macos/sketchybar/tests/layout.sh
 bash macos/sketchybar/tests/widgets.sh
 ```
 
